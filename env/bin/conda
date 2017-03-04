@@ -1,0 +1,10 @@
+#!/Users/neighbor/Projects/topstock-backend/env/bin/python3.5
+# EASY-INSTALL-ENTRY-SCRIPT: 'conda==4.3.13','console_scripts','conda'
+__requires__ = 'conda==4.3.13'
+import sys
+from pkg_resources import load_entry_point
+
+if __name__ == '__main__':
+    sys.exit(
+        load_entry_point('conda==4.3.13', 'console_scripts', 'conda')()
+    )
