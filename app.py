@@ -3,11 +3,6 @@ from flask import request
 from flask import json
 app = Flask(__name__)
 
-
-@app.route('/')
-def hello():
-    return "Hello World!"
-
 @app.route('/Quote', methods = ['GET'])
 def quote():
 	bigDict = {}
@@ -43,8 +38,12 @@ def topFive():
 	return json.jsonify(bigDict)
 
 @app.route('/Quote/TopStock', methods = ['GET'])
-def topStock(type)
+def topStock():
+	bigDict = {};
+	bigDict["one"] = "Apple Inc"
+	bigDict["Symbol-one"] = "AAPL"
+	bigDict["LastPrice-one"] = 524.49
+	return json.jsonify(bigDict)
 	
-#last
 if __name__ == '__main__':
     app.run()
