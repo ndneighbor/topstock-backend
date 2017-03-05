@@ -130,24 +130,33 @@ class MarketTiming(strategy.BacktestingStrategy):
 def main(plot):
     initialCash = 10000
     instrumentsByClass = {
-        "US Stocks": ["VTI"],
-        "Foreign Stocks": ["VEU"],
-        "US 10 Year Government Bonds": ["IEF"],
-        "Real Estate": ["VNQ"],
-        "Commodities": ["DBC"],
+ "Atlantic American Corporation": ["AAOI"],
+ "Applied Optoelectronics, Inc.": ["AAON"],
+ "AAON, Inc.": ["AAPC"],
+ "Atlantic Alliance Partnership Corp.   Ordinary Sh": ["AAPL"],
+ "Apple Inc.": ["AAWW"],
+ "Atlas Air Worldwide Holdings": ["AAXJ"],
+ "iShares MSCI All Country Asia ex Japan Index ": ["ABAC"],
+ "Aoxin Tianli Group, Inc.   Common Sh": ["ABAX"],
+ "ABAXIS, Inc.": ["ABCB"],
+ "Ameris Bancorp": ["ABCD"],
+ "Cambium Learning Group, Inc.": ["ABCO"],
+ "The Advisory Board Company": ["ABDC"],
+ "Alcentra Capital Corp.": ["ABEO"],
     }
 
     # Download the bars.
     instruments = ["SPY"]
     for assetClass in instrumentsByClass:
         instruments.extend(instrumentsByClass[assetClass])
-    feed = yahoofinance.build_feed(instruments, 2007, 2013, "data", skipErrors=True)
+    feed = yahoofinance.build_feed(instruments, 2010, 2016, "data", skipErrors=True)
 
     strat = MarketTiming(feed, instrumentsByClass, initialCash)
     sharpeRatioAnalyzer = sharpe.SharpeRatio()
     strat.attachAnalyzer(sharpeRatioAnalyzer)
     returnsAnalyzer = returns.Returns()
     strat.attachAnalyzer(returnsAnalyzer)
+    feed.attachAnalyzer()
 
     if plot:
         plt = plotter.StrategyPlotter(strat, False, False, True)
@@ -159,6 +168,7 @@ def main(plot):
     strat.run()
     print "Sharpe ratio: %.2f" % sharpeRatioAnalyzer.getSharpeRatio(0.05)
     print "Returns: %.2f %%" % (returnsAnalyzer.getCumulativeReturns()[-1] * 100)
+    print "Top Instrument Return: %s %%" % (returnsAnalyzer.getReturns())
 
     if plot:
         plt.plot()

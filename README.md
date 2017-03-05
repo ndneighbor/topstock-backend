@@ -12,17 +12,6 @@ For the stocks of interest we run
 
 '''
 
-    python stocks.py MO
-
-To get some information on a single stock.
-
-Or you can do something like:
-
-    python stocks.py AAPL GOOG KR GE F T
-
-we mostly care about 
-
-    python stocks.py 500
 '''
 
 ## Functionality
