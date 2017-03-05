@@ -137,7 +137,7 @@ class MarketTiming(strategy.BacktestingStrategy):
 
 def main(plot):
     initialCash = 10000
-    instrumentsByClass = {
+    instrumentsByClassMain = {
  "Atlantic American Corporation": ["AAOI"],
  "Applied Optoelectronics, Inc.": ["AAON"],
  "AAON, Inc.": ["AAPC"],
@@ -153,11 +153,14 @@ def main(plot):
  "Alcentra Capital Corp.": ["ABEO"],
     }
 
+    
+
     # Download the bars.
     instruments = ["SPY"]
     for assetClass in instrumentsByClass:
         instruments.extend(instrumentsByClass[assetClass])
     feed = yahoofinance.build_feed(instruments, 2010, 2016, "data", skipErrors=True)
+
 
 
     strat = MarketTiming(feed, instrumentsByClass, initialCash)
