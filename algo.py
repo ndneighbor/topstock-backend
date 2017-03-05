@@ -5,6 +5,10 @@ from pyalgotrade.technical import ma
 from pyalgotrade.technical import cumret
 from pyalgotrade.stratanalyzer import sharpe
 from pyalgotrade.stratanalyzer import returns
+from pyalgotrade.barfeed import yahoofeed
+from pyalgotrade.stratanalyzer import drawdown
+from pyalgotrade.stratanalyzer import trades
+import sma_crossover
 
 
 class MarketTiming(strategy.BacktestingStrategy):
@@ -126,6 +130,8 @@ class MarketTiming(strategy.BacktestingStrategy):
 
         self._placePendingOrders()
 
+        
+
 
 def main(plot):
     initialCash = 10000
@@ -156,7 +162,9 @@ def main(plot):
     strat.attachAnalyzer(sharpeRatioAnalyzer)
     returnsAnalyzer = returns.Returns()
     strat.attachAnalyzer(returnsAnalyzer)
-    feed.attachAnalyzer()
+
+
+   
 
     if plot:
         plt = plotter.StrategyPlotter(strat, False, False, True)
@@ -168,7 +176,8 @@ def main(plot):
     strat.run()
     print "Sharpe ratio: %.2f" % sharpeRatioAnalyzer.getSharpeRatio(0.05)
     print "Returns: %.2f %%" % (returnsAnalyzer.getCumulativeReturns()[-1] * 100)
-    print "Top Instrument Return: %s %%" % (returnsAnalyzer.getReturns())
+
+# returnsAnalyzer.getCumulativeReturns()[-1] * 100
 
     if plot:
         plt.plot()
