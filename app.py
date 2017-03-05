@@ -1,21 +1,24 @@
 from flask import Flask
 from flask import request
 from flask import json
+import urllib2
+
 app = Flask(__name__)
 
 @app.route('/Quote', methods = ['GET'])
 def quote():
-	bigDict = {}
-	bigDict["Name"] = "Apple Inc"
-	bigDict["Symbol"] = "AAPL"
-	bigDict["LastPrice"] = 524.49
-	bigDict["Change"] = 15.6
+	return urllib2.urlopen("http://dev.markitondemand.com/MODApis/Api/v2/Quote/json?symbol=" + str(request.args['symbol'])).read()
+	'''#bigDict = {}
+	#bigDict["Name"] = "Apple Inc"
+	#bigDict["Symbol"] = "AAPL"
+	#bigDict["LastPrice"] = 524.49
+	#bigDict["Change"] = 15.6
 	bigDict["ChangePercent"] = 3.06549549018453
 	bigDict["Timestamp"] = "Wed Oct 23 13:39:19 UTC-06:00 2013"
 	bigDict["High"] = 52499
 	bigDict["Low"] = 519.175
 	bigDict["Open"] = 519.175
-	return json.jsonify(bigDict)
+	return json.jsonify(bigDict)'''
 
 @app.route('/Quote/Topfive', methods = ['GET'])
 def topFive():
