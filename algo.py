@@ -44,6 +44,7 @@ class MarketTiming(strategy.BacktestingStrategy):
         if len(priceDS) >= lookBack and smas[-1] is not None and smas[-1*lookBack] is not None:
             ret = (priceDS[-1] - priceDS[-1*lookBack]) / float(priceDS[-1*lookBack])
         return ret
+        print ret
 
     def _getTopByClass(self, assetClass):
         # Find the instrument with the highest rank.
@@ -159,12 +160,11 @@ def main(plot):
     feed = yahoofinance.build_feed(instruments, 2010, 2016, "data", skipErrors=True)
 
 
-    for num, name in enumerate(instruments, start=1):
-        strat = MarketTiming(feed, instruments[num], initialCash)
-        sharpeRatioAnalyzer = sharpe.SharpeRatio()
-        strat.attachAnalyzer(sharpeRatioAnalyzer)
-        returnsAnalyzer = returns.Returns()
-        strat.attachAnalyzer(returnsAnalyzer)
+    strat = MarketTiming(feed, instrumentsByClass, initialCash)
+    sharpeRatioAnalyzer = sharpe.SharpeRatio()
+    strat.attachAnalyzer(sharpeRatioAnalyzer)
+    returnsAnalyzer = returns.Returns()
+    strat.attachAnalyzer(returnsAnalyzer)
  
 
    
@@ -179,6 +179,7 @@ def main(plot):
     strat.run()
     print "Sharpe ratio: %.2f" % sharpeRatioAnalyzer.getSharpeRatio(0.05)
     print "Returns: %.2f %%" % (returnsAnalyzer.getCumulativeReturns()[-1] * 100)
+    print "Returns All: %.2f %%" % (returnsAnalyzer.getReturns()[-1] * 100)
 
 # returnsAnalyzer.getCumulativeReturns()[-1] * 100
 
