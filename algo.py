@@ -21,6 +21,7 @@ class MarketTiming(strategy.BacktestingStrategy):
         # Initialize indicators for each instrument.
         self.__sma = {}
         for assetClass in instrumentsByClass:
+            print instrumentsByClass
             for instrument in instrumentsByClass[assetClass]:
                 priceDS = feed[instrument].getPriceDataSeries()
                 self.__sma[instrument] = ma.SMA(priceDS, 200)
