@@ -6,6 +6,14 @@ This project uses the Quantopia API and Markit On Demand for it's stock market d
 This backend is written in Flask and hosted on Heroku, here is the planned documentation for the API
 routes so Alexa can communicate with the Market.
 
+PyStockPicker takes the general stocks and then we run a second layer of a Market Moving Average (Tactical Stock Analysis)
+
+For the stocks of interest we run
+
+'''
+
+'''
+
 ## Functionality
 
 This Backend is able to retrive Stock prices for a particular stock
