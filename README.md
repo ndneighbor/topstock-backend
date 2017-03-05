@@ -8,15 +8,21 @@ routes so Alexa can communicate with the Market.
 
 PyStockPicker takes the general stocks and then we run a second layer of a Market Moving Average (Tactical Stock Analysis)
 
-For the temp DB we run
+For the stocks of interest we run
 
 '''
-1. Run with python main.py
-2. Choose exchange (TSX, NYSE, NASDAQ, HKG)
-3. Click Update
-4. Click Export to Excel
-5. Click Clear Cache
-6. Run Again
+
+    python stocks.py MO
+
+To get some information on a single stock.
+
+Or you can do something like:
+
+    python stocks.py AAPL GOOG KR GE F T
+
+we mostly care about 
+
+    python stocks.py 500
 '''
 
 ## Functionality
