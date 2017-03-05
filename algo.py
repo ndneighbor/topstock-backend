@@ -157,12 +157,14 @@ def main(plot):
         instruments.extend(instrumentsByClass[assetClass])
     feed = yahoofinance.build_feed(instruments, 2010, 2016, "data", skipErrors=True)
 
-    strat = MarketTiming(feed, instrumentsByClass, initialCash)
-    sharpeRatioAnalyzer = sharpe.SharpeRatio()
-    strat.attachAnalyzer(sharpeRatioAnalyzer)
-    returnsAnalyzer = returns.Returns()
-    strat.attachAnalyzer(returnsAnalyzer)
 
+    for num, name in enumerate(instruments, start=1):
+        strat = MarketTiming(feed, instruments[num], initialCash)
+        sharpeRatioAnalyzer = sharpe.SharpeRatio()
+        strat.attachAnalyzer(sharpeRatioAnalyzer)
+        returnsAnalyzer = returns.Returns()
+        strat.attachAnalyzer(returnsAnalyzer)
+ 
 
    
 
